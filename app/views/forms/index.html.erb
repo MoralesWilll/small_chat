@@ -1,0 +1,40 @@
+<%= content_for :title, "Listado de Formularios" %>
+
+<div class="max-w-6xl mx-auto p-6 bg-white rounded shadow-md">
+  <h1 class="text-3xl font-bold mb-6">Listado de Formularios</h1>
+
+  <div class="mb-4">
+    <%= link_to "Crear Nuevo Formulario", new_form_path, class: "px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300" %>
+  </div>
+
+  <% if @forms.present? %>
+    <table class="w-full border-collapse">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="px-4 py-2 border text-left">Nombre</th>
+          <th class="px-4 py-2 border text-left">Descripción</th>
+          <th class="px-4 py-2 border text-left">Estado de Procesamiento</th>
+          <th class="px-4 py-2 border text-left">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @forms.each do |form| %>
+          <tr class="border-b hover:bg-gray-50">
+            <td class="px-4 py-2 border text-left"><%= form.name %></td>
+            <td class="px-4 py-2 border text-left">
+              <%= truncate(form.description, length: 50) %>
+            </td>
+            <td class="px-4 py-2 border text-left">
+              <%= form.processed_in_job ? "Encolado" : "Hilo Principal" %>
+            </td>
+            <td class="px-4 py-2 border text-left">
+              <%= link_to "Ver detalles", form_path(form), class: "text-blue-500 hover:underline" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="text-center text-gray-500 mt-4">No se han encontrado formularios.</p>
+  <% end %>
+</div>

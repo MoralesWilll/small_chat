@@ -1,0 +1,31 @@
+<%= content_for :title, "Detalle del Formulario" %>
+
+<div class="max-w-6xl mx-auto p-6 bg-white rounded shadow-md">
+  <h1 class="text-3xl font-bold mb-4">Detalle del Formulario</h1>
+
+  <!-- Form Details -->
+  <div class="mb-4">
+    <h2 class="text-2xl font-semibold mb-2">Información del Formulario</h2>
+    <p><strong>Nombre:</strong> <%= @form.name %></p>
+    <p><strong>Descripción:</strong> <%= @form.description %></p>
+    <p><strong>Estado de Procesamiento:</strong> <%= @form.processed_in_job ? "Encolado" : "Hilo Principal" %></p>
+  </div>
+
+<% if @response.present? %>
+  <div class="mb-4">
+    <h2 class="text-2xl font-semibold mb-2">Respuesta Generada</h2>
+    <p><strong>Respuesta:</strong></p>
+    <div class="bg-gray-100 p-4 rounded border border-gray-300">
+      <%= @response.ai_response %>
+    </div>
+    <p class="mt-2"><strong>Estado de la Respuesta:</strong> <%= @response.status %></p>
+  </div>
+<% else %>
+  <p class="text-center text-gray-500 mt-4">No hay una respuesta asociada a este formulario.</p>
+<% end %>
+
+  <!-- Link to go back -->
+  <div class="mt-6">
+    <%= link_to 'Volver al listado de formularios', forms_path, class: "px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300" %>
+  </div>
+</div>

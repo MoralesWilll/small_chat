@@ -1,8 +1,8 @@
 class Response < ApplicationRecord
   belongs_to :form
 
-  enum status: { pending: "pending", completed: "completed", failed: "failed" }
+  enum :status, { pending: "pediente", completed: "Terminado", failed: "fallido" }
 
   validates :status, presence: true,
-inclusion: { in: statuses.keys }
+            inclusion: { in: statuses.keys }
 end

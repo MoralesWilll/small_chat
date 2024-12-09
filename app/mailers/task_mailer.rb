@@ -1,2 +1,0 @@
-class TaskMailer < ApplicationMailer
-end
